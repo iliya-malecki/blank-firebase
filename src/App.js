@@ -1,15 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
-import firebase from "firebase"
 import {useEffect} from "react"
+import {db} from './firestore.js'
+
 function App() {
-  const db = firebase.firestore()
+  
   useEffect(()=>{
-    db.collection("data").doc("whaaaat").update({
+    
+    db.collection("data").add({
       whatever: "lalala",
-      something_elstte2: "d"
+      something_else: "d"
     })
-  },[db])
+  },[])
   return (
     <div className="App">
       <header className="App-header">
