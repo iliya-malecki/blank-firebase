@@ -7,17 +7,24 @@ const userData = {
     whatever: "lalala",
     something_else: "d"
 }
-const postData = ()=>{
-  db.collection("data").add({
+const postData = (data)=>{
+   return db.collection("data").doc().set({
     timestamp: firestore.FieldValue.serverTimestamp(),
-    ...userData
+    ...data
+  }, {merge:true})
+}
+const stopFirestore = ()=>{
+  db.waitForPendingWrites()
+  .finally(()=>{
+    db.terminate()
+    db.clearPersistence()
   })
-  
 }
 function App() {
   //userData.newfield = "wow it works";
   useEffect(()=>{
-    postData()
+    postData(userData)
+    stopFirestore()
   },[])
   return (
     <div className="App">

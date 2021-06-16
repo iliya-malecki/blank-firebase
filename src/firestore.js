@@ -1,6 +1,7 @@
 import firebase from "firebase/app"
 import "firebase/firestore"
 
+
 firebase.initializeApp({
   apiKey: "AIzaSyBRuEpqv6EivzXZ0eibQoZRRAHfMs8Rscc",
   authDomain: "blank-316513.firebaseapp.com",
