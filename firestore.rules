@@ -1,6 +1,6 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database=**} {
-      allow create: if request.auth !=null; 
+      allow create: if true; 
   }
 }
