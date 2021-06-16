@@ -1,16 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
 import {useEffect} from "react"
-import {db} from './firestore.js'
+import {db, firestore} from './firestore.js'
 
-function App() {
+const userData = {
+    whatever: "lalala",
+    something_else: "d"
+}
+const postData = ()=>{
+  db.collection("data").add({
+    timestamp: firestore.FieldValue.serverTimestamp(),
+    ...userData
+  })
   
+}
+function App() {
+  //userData.newfield = "wow it works";
   useEffect(()=>{
-    
-    db.collection("data").add({
-      whatever: "lalala",
-      something_else: "d"
-    })
+    postData()
   },[])
   return (
     <div className="App">
