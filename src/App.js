@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useEffect} from "react"
-import {db, firestore} from './firestore.js'
+import {db} from './firestore.js'
 
 const userData = {
     whatever: "lalala",
@@ -9,7 +9,7 @@ const userData = {
 }
 const postData = (data)=>{
    return db.collection("data").doc().set({
-    timestamp: firestore.FieldValue.serverTimestamp(),
+    timestamp: Date.now(),
     ...data
   }, {merge:true})
 }
