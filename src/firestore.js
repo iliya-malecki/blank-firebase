@@ -11,9 +11,10 @@ firebase.initializeApp({
 })
 const db = firebase.firestore()
 
-export const postData = (data)=>{
+export const postData = (data, timeStart = null)=>{
   return db.collection("data").doc().set({
    timestamp: Date.now(),
+   ...(timeStart && {timestampOfStart: timeStart}),
    ...data
  }, {merge:true})
 }
