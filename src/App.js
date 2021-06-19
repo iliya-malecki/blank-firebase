@@ -1,25 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import {useEffect} from "react"
-import {db} from './firestore.js'
+import {postData, stopFirestore} from './firestore.js'
 
 const userData = {
     whatever: "lalala",
     something_else: "d"
 }
-const postData = (data)=>{
-   return db.collection("data").doc().set({
-    timestamp: Date.now(),
-    ...data
-  }, {merge:true})
-}
-const stopFirestore = ()=>{
-  db.waitForPendingWrites()
-  .finally(()=>{
-    db.terminate()
-    db.clearPersistence()
-  })
-}
+
 function App() {
   //userData.newfield = "wow it works";
   useEffect(()=>{
