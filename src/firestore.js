@@ -18,10 +18,8 @@ export const postData = (data, timeStart = null)=>{
    ...data
  }, {merge:true})
 }
-export const stopFirestore = ()=>{
- db.waitForPendingWrites()
- .finally(()=>{
-   db.terminate()
-   db.clearPersistence()
- })
+export const stopFirestore = async ()=>{
+ await db.waitForPendingWrites()
+ await db.terminate()
+ await db.clearPersistence()
 }
